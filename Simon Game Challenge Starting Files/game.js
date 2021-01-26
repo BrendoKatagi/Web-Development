@@ -48,19 +48,32 @@ function checkAnswer(currentLevel){
                 nextSequence();    
             }, 1000);
 
-        }else{
-            
         }
 
     }else{
-        console.log("Wrong!");
+        playSound("wrong");
+        $("body").addClass("game-over");
+
+        setTimeout(() => {
+            $("body").removeClass("game-over");
+        }, 200);
+
+        $("#level-title").text("Game Over, Press Any Key to Restart");
+
+        startOver();
     }
+}
+
+function startOver(){
+    level = 0;
+    gamePattern = [];
+    gameStart = false;
 }
 
 $(document).keypress(function(event)
 {    
     if(!gameStart){
-        
+
         $("#level-title").text("level " + level);
         nextSequence();
         gameStart = true;
