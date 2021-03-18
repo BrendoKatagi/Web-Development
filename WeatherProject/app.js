@@ -4,9 +4,16 @@ const https = require("https");
 const app = express();
 
 app.get("/", function(req, res){
-    const url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Sao%20Paulo&appid=c85446ae4c3c824ead6aded5f3bbf12c&units=metric";
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=Sao Paulo&appid=c85446ae4c3c824ead6aded5f3bbf12c&units=metric";
     https.get(url, function(response){
-        console.log(response);
+        console.log(response.statusCode);
+
+        response.on("data", function(data){
+            const weatherData = JSON.parse(data);
+            const temp = weatherData.main.temp;
+            const weatherDescription = weatherData.weather[0].description;
+            
+        })
     })
 
     res.send("Server is up and running.")
