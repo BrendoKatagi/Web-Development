@@ -12,11 +12,16 @@ app.get("/", function(req, res){
             const weatherData = JSON.parse(data);
             const temp = weatherData.main.temp;
             const weatherDescription = weatherData.weather[0].description;
-            
+            const icon = weatherData.weather[0].icon;
+            const imgUrl = "http://openweathermap.org/img/wn/" + icon + ".png" 
+
+            res.write("<p>The weather is currently: " + weatherDescription + " </p>");
+            res.write("<h1>The temperature in Sao Paulo is " + temp + " degrees Celsius</h1>");
+            res.write("<img src='"+ imgUrl +"'>");
+            res.send();
         })
     })
 
-    res.send("Server is up and running.")
 })
 
 app.listen(3000, function(){
