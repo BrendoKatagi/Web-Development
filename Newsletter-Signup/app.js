@@ -32,11 +32,11 @@ app.post("/", function(req, res){
     };
 
     const jsonData = JSON.stringify(data);
-    const url = "https://us1.api.mailchimp.com/3.0/lists/a8d527a297";
+    const url = "https://us1.api.mailchimp.com/3.0/lists/USERID";
     
     const options = {
         method: "POST",
-        auth: "brendokatagi:1ee6b942f4417f89d464e81fb4b22777-us1"
+        auth: APIKEY
     };
 
     const request = https.request(url, options, function(response){
@@ -67,7 +67,7 @@ app.listen(3000, function(){
 });
 
 //API KEY
-//1ee6b942f4417f89d464e81fb4b22777-us1
+//xxx
 
 // List ID
-// a8d527a297
+// yyyy
