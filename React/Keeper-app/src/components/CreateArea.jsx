@@ -30,7 +30,7 @@ function CreateArea(props) {
 
     return (
     <div>
-      <form>
+      <form className="create-note">
         <input onChange={updateNote} name="title" placeholder="Title" value={note.title} />
         <textarea onChange={updateNote} name="content" placeholder="Take a note..." rows="3" value={note.content}/>
         <Fab onClick={addNote}>
