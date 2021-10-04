@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import ListItem from "./ListItem";
 
 function App() {
+  const [item, setItem] = useState([]);
+  const [newItem, setNewItem] = useState("");
+
+  function addItem() {
+    setItem((prevValue) => {
+      return [...prevValue, newItem];
+    });
+    setNewItem("");
+  }
+
+  function updateNewItem(event) {
+    const { value } = event.target;
+    setNewItem(value);
+  }
+
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
       <div className="form">
-        <input type="text" />
-        <button>
+        <input onChange={updateNewItem} type="text" value={newItem} />
+        <button onClick={addItem}>
           <span>Add</span>
         </button>
       </div>
       <div>
         <ul>
-          <li>A Item </li>
+          {item.map((i) => {
+            return <ListItem value={i} />;
+          })}
         </ul>
       </div>
     </div>
